@@ -71,8 +71,6 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(120deg
 .bank-modal-panel::-webkit-scrollbar-thumb,.welcome-panel::-webkit-scrollbar-thumb{background:rgba(255,199,238,.3);border-radius:10px}
 .close-modal-btn{position:absolute;top:16px;right:16px;background:rgba(255,255,255,.1);border:1px solid rgba(255,199,238,.3);color:#fff;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.2rem;transition:.2s;z-index:10}
 .close-modal-btn:hover{background:rgba(255,255,255,.2);transform:rotate(90deg)}
-.qr-container{display:flex;justify-content:center;margin:20px 0 10px}
-.qr-img{width:160px;height:160px;border-radius:12px;border:2px solid rgba(0,255,255,.3);box-shadow:0 0 20px rgba(255,132,223,.2);object-fit:cover;background:#fff;padding:8px}
 .bank-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,199,238,.12);border-radius:16px;padding:16px;margin-top:15px}
 .bank-card p{margin:12px 0;font-size:1rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px dashed rgba(255,255,255,.1);padding-bottom:10px}
 .bank-card p:last-of-type{border-bottom:none;padding-bottom:0}
@@ -80,7 +78,7 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(120deg
 .welcome-panel h2{margin:0 0 15px;color:var(--pink-3);font-size:1.5rem;text-shadow:0 0 15px rgba(255,132,223,.4)}
 .device-box{margin:20px 0;padding:15px;background:rgba(255,255,255,.05);border-radius:12px;border:1px dashed rgba(255,199,238,.3);font-size:.95rem;line-height:1.6;color:#f8d7f0}
 
-/* CSS FPS & MINECRAFT DECOR (ĐÃ FIX ẢNH CHẾT) */
+/* CSS FPS & MINECRAFT DECOR */
 #fps-counter { position: fixed; top: 12px; left: 14px; color: #00ff00; font-family: monospace; font-size: 16px; font-weight: bold; text-shadow: 1px 1px 0 #000, -1px -1px 0 #000; z-index: 999; pointer-events: none; }
 .mc-item { position: fixed; z-index: 10; width: 44px; height: 44px; cursor: pointer; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5)); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s; animation: float-mc 3s ease-in-out infinite alternate; image-rendering: pixelated; image-rendering: crisp-edges; }
 @keyframes float-mc { from { transform: translateY(0); } to { transform: translateY(-10px); } }
@@ -148,7 +146,7 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(120deg
 <section class="panel">
   <div class="section">Tài Nguyên</div>
   <div class="stack"><a class="tile" href="https://l.facebook.com/l.php?u=https%3A%2F%2Ftuoitre24h.com%2Fkhoa-an-buff-mang-xa-hoi-nang-cap-premium" target="_blank">✨ <strong>Link Báo</strong></a></div>
-  <div class="section" style="margin-top:20px">Thông liên hệ</div>
+  <div class="section" style="margin-top:20px">Thông tin liên hệ</div>
   <div class="social-grid">
     <a class="tile" href="https://www.facebook.com/Kem11th6" target="_blank">📘 <strong>Facebook</strong></a>
     <a class="tile" href="https://zalo.me/84982213186" target="_blank">💬 <strong>Zalo</strong></a>
@@ -171,15 +169,11 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(120deg
   <div class="bank-modal-panel">
     <button class="close-modal-btn" id="closeBankModal">&times;</button>
     <h2 style="color:var(--pink-3);margin-top:0;text-align:center;text-shadow:0 0 12px rgba(255,132,223,.4)">Chuyển Khoản</h2>
-    
-    <div class="qr-container">
-      <img src="LINK_ẢNH_QR_CỦA_BẠN_Ở_ĐÂY" class="qr-img" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg'" alt="QR"/>
-    </div>
 
     <div class="bank-card">
-      <p><strong>Ngân hàng:</strong> <span>TÊN NGÂN HÀNG</span></p>
-      <p><strong>Chủ TK:</strong> <span>TÊN CHỦ TÀI KHOẢN</span></p>
-      <p><strong>Số TK:</strong> <span id="stkValue">SỐ TÀI KHOẢN</span></p>
+      <p><strong>Ngân hàng:</strong> <span>MB Bank</span></p>
+      <p><strong>Chủ TK:</strong> <span>NG DOÃN KHOA AN</span></p>
+      <p><strong>Số TK:</strong> <span id="stkValue">274233</span></p>
     </div>
     <button class="btn" id="copyStkBtn" style="width:100%;margin-top:15px">📋 Copy Số Tài Khoản</button>
   </div>
