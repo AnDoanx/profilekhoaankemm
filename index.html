@@ -359,7 +359,7 @@ body::before{
   *,*::before,*::after{animation:none !important;transition:none !important;scroll-behavior:auto !important}
 }
 
-/* --- CSS BONG BÓNG VÀ BẢNG THÔNG TIN STK --- */
+/* --- CSS BONG BÓNG VÀ BẢNG THÔNG TIN STK + QR --- */
 .bank-fab {
   position: fixed;
   left: 20px;
@@ -416,9 +416,19 @@ body::before{
 .bank-modal-panel {
   width: 90%;
   max-width: 400px;
+  max-height: 90vh; /* Giới hạn chiều cao, nếu nội dung dài sẽ có thanh cuộn */
+  overflow-y: auto;
   transform: scale(0.9);
   transition: transform 0.3s ease;
   padding: 30px 24px;
+}
+/* Tùy chỉnh thanh cuộn cho bảng */
+.bank-modal-panel::-webkit-scrollbar {
+  width: 6px;
+}
+.bank-modal-panel::-webkit-scrollbar-thumb {
+  background: rgba(255,199,238,.3);
+  border-radius: 10px;
 }
 .bank-modal-overlay.active .bank-modal-panel {
   transform: scale(1);
@@ -439,17 +449,36 @@ body::before{
   cursor: pointer;
   font-size: 1.2rem;
   transition: 0.2s;
+  z-index: 10;
 }
 .close-modal-btn:hover {
   background: rgba(255,255,255,0.2);
   transform: rotate(90deg);
 }
+
+/* Khung chứa ảnh QR */
+.qr-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0 10px;
+}
+.qr-img {
+  width: 160px; /* Kích thước QR */
+  height: 160px;
+  border-radius: 12px;
+  border: 2px solid rgba(0,255,255,.3);
+  box-shadow: 0 0 20px rgba(255,132,223,.2);
+  object-fit: cover;
+  background: #fff; /* Nền trắng để máy quét dễ nhận diện */
+  padding: 8px; /* Viền trắng quanh QR */
+}
+
 .bank-card {
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,199,238,.12);
   border-radius: 16px;
   padding: 16px;
-  margin-top: 20px;
+  margin-top: 15px;
 }
 .bank-card p {
   margin: 12px 0;
@@ -548,15 +577,19 @@ body::before{
 <div class="bank-modal-overlay" id="bankModal">
   <div class="panel bank-modal-panel">
     <button class="close-modal-btn" id="closeBankModal">&times;</button>
-    <h2 style="color: var(--pink-3); margin-top: 0; text-align: center; text-shadow: 0 0 12px rgba(255,132,223,.4);">Thông Tin Chuyển Khoản</h2>
+    <h2 style="color: var(--pink-3); margin-top: 0; text-align: center; text-shadow: 0 0 12px rgba(255,132,223,.4);">Chuyển Khoản</h2>
     
+    <div class="qr-container">
+      <img src="LINK_ẢNH_QR_CỦA_BẠN_Ở_ĐÂY" alt="Mã QR Thanh Toán" class="qr-img" />
+    </div>
+
     <div class="bank-card">
       <p><strong>Ngân hàng:</strong> <span>TÊN NGÂN HÀNG</span></p>
       <p><strong>Chủ TK:</strong> <span>TÊN CHỦ TÀI KHOẢN</span></p>
       <p><strong>Số TK:</strong> <span id="stkValue">SỐ TÀI KHOẢN</span></p>
     </div>
     
-    <button class="btn" id="copyStkBtn" style="width: 100%; margin-top: 20px;">📋 Copy Số Tài Khoản</button>
+    <button class="btn" id="copyStkBtn" style="width: 100%; margin-top: 15px;">📋 Copy Số Tài Khoản</button>
   </div>
 </div>
 
