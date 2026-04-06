@@ -349,7 +349,8 @@ body::before{
 .btn:focus-visible,
 .tile:focus-visible,
 .music-fab:focus-visible,
-.avatar:focus-visible{
+.avatar:focus-visible,
+.bank-fab:focus-visible{
   outline:2px solid #ffd8f5;
   outline-offset:3px;
 }
@@ -357,6 +358,111 @@ body::before{
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none !important;transition:none !important;scroll-behavior:auto !important}
 }
+
+/* --- CSS BONG BÓNG VÀ BẢNG THÔNG TIN STK --- */
+.bank-fab {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 9;
+  width: 58px;
+  height: 58px;
+  border: 2px solid rgba(0,255,255,.5);
+  border-radius: 50%;
+  cursor: pointer;
+  background: #000;
+  box-shadow: 0 18px 38px rgba(0,255,255,.25), 0 0 24px rgba(0,255,255,.15);
+  transition: transform .25s ease, box-shadow .25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: float-bubble 3s ease-in-out infinite;
+  padding: 0;
+  overflow: hidden;
+}
+.bank-fab img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.bank-fab:hover {
+  transform: scale(1.08);
+  animation-play-state: paused;
+  box-shadow: 0 20px 42px rgba(0,255,255,.4), 0 0 30px rgba(0,255,255,.25);
+}
+@keyframes float-bubble {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.bank-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.bank-modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.bank-modal-panel {
+  width: 90%;
+  max-width: 400px;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+  padding: 30px 24px;
+}
+.bank-modal-overlay.active .bank-modal-panel {
+  transform: scale(1);
+}
+.close-modal-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,199,238,.3);
+  color: #fff;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: 0.2s;
+}
+.close-modal-btn:hover {
+  background: rgba(255,255,255,0.2);
+  transform: rotate(90deg);
+}
+.bank-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,199,238,.12);
+  border-radius: 16px;
+  padding: 16px;
+  margin-top: 20px;
+}
+.bank-card p {
+  margin: 12px 0;
+  font-size: 1rem;
+  color: #fff6fc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px dashed rgba(255,255,255,0.1);
+  padding-bottom: 10px;
+}
+.bank-card p:last-of-type { border-bottom: none; padding-bottom: 0; }
+.bank-card strong { color: var(--pink-3); }
 </style>
 </head>
 <body>
@@ -432,7 +538,27 @@ body::before{
 </div>
 
 <div class="toast" id="toast">Đã copy!</div>
+
+<button class="bank-fab focus-ring" id="bankFab" type="button" aria-label="Thanh toán">
+  <img src="LINK_ẢNH_CỦA_BẠN_Ở_ĐÂY" alt="Bank" />
+</button>
+
 <button class="music-fab" id="musicFab" type="button" aria-label="Bật tắt nhạc">🎵</button>
+
+<div class="bank-modal-overlay" id="bankModal">
+  <div class="panel bank-modal-panel">
+    <button class="close-modal-btn" id="closeBankModal">&times;</button>
+    <h2 style="color: var(--pink-3); margin-top: 0; text-align: center; text-shadow: 0 0 12px rgba(255,132,223,.4);">Thông Tin Chuyển Khoản</h2>
+    
+    <div class="bank-card">
+      <p><strong>Ngân hàng:</strong> <span>TÊN NGÂN HÀNG</span></p>
+      <p><strong>Chủ TK:</strong> <span>TÊN CHỦ TÀI KHOẢN</span></p>
+      <p><strong>Số TK:</strong> <span id="stkValue">SỐ TÀI KHOẢN</span></p>
+    </div>
+    
+    <button class="btn" id="copyStkBtn" style="width: 100%; margin-top: 20px;">📋 Copy Số Tài Khoản</button>
+  </div>
+</div>
 
 <audio id="backgroundAudio" loop preload="auto" style="display:none">
   <source src="https://files.catbox.moe/rp5kuq.mp3" type="audio/mpeg" />
@@ -461,7 +587,7 @@ function safeCopy(text){
 }
 
 document.getElementById('copyPhone').addEventListener('click',()=>safeCopy('098223186'));
-document.getElementById('copyMail').addEventListener('click',()=>safeCopy(' Khoaansuperhero@gmail.com'));
+document.getElementById('copyMail').addEventListener('click',()=>safeCopy('Khoaansuperhero@gmail.com'));
 document.getElementById('scrollTopBtn').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 
 const audio=document.getElementById('backgroundAudio');
@@ -606,7 +732,34 @@ addEventListener('resize',()=>{resize(); drawNebula();});
 resize();
 drawNebula();
 drawGalaxy();
+
+// --- XỬ LÝ JS CHO BONG BÓNG NGÂN HÀNG ---
+const bankFab = document.getElementById('bankFab');
+const bankModal = document.getElementById('bankModal');
+const closeBankModal = document.getElementById('closeBankModal');
+const copyStkBtn = document.getElementById('copyStkBtn');
+const stkValue = document.getElementById('stkValue').innerText;
+
+bankFab.addEventListener('click', () => {
+  bankModal.classList.add('active');
+});
+
+closeBankModal.addEventListener('click', () => {
+  bankModal.classList.remove('active');
+});
+
+bankModal.addEventListener('click', (e) => {
+  if(e.target === bankModal) {
+    bankModal.classList.remove('active');
+  }
+});
+
+copyStkBtn.addEventListener('click', () => {
+  safeCopy(stkValue);
+  setTimeout(() => {
+    bankModal.classList.remove('active');
+  }, 500); 
+});
 </script>
 </body>
 </html>
- Cải tiến giao diện và thêm phần bắt đầy hiện ra 1 cửa sổ xin chào phong cách Ui ngầu anime 
