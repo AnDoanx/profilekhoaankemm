@@ -32,7 +32,8 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(120deg
 .online{position:absolute;right:8px;bottom:8px;width:14px;height:14px;border-radius:50%;background:linear-gradient(135deg,#ffd4f5,#ff8adf);box-shadow:0 0 16px rgba(255,199,238,.95);border:2px solid rgba(18,7,26,.8)}
 .title h1{margin:0;font-size:clamp(1.45rem,2vw,1.9rem);line-height:1.15;color:var(--pink-3);text-shadow:0 0 18px rgba(255,132,223,.36);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .badge-verify{display:inline-flex;width:22px;height:22px}
-.sub{color:var(--muted);opacity:.92; margin-top: 4px;}
+.sub{color:var(--muted);opacity:.92; margin-top: 4px; font-family: monospace; font-size: 1.1rem; min-height: 1.5em; display:flex; align-items:center;}
+.typewriter-cursor { border-right: 2px solid var(--pink); animation: blink 0.75s step-end infinite; padding-right: 2px; }
 
 .badges{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 10px}
 .badge{padding:8px 12px;border-radius:999px;font-size:.93rem;background:rgba(255,255,255,.045);border:1px solid rgba(255,199,238,.22);box-shadow:inset 0 1px 0 rgba(255,255,255,.07)}
@@ -60,6 +61,7 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(120deg
 .music-fab{position:fixed;right:20px;bottom:20px;z-index:9;width:58px;height:58px;border:none;border-radius:50%;cursor:pointer;color:#330a2a;background:linear-gradient(135deg,#ffe0f8,#ff95e2);box-shadow:0 18px 38px rgba(255,132,223,.34),0 0 24px rgba(255,199,238,.25);font-size:1.2rem;transition:.25s}
 .music-fab:hover{transform:translateY(-3px) scale(1.04)}
 @keyframes spin{to{transform:rotate(360deg)}}
+@keyframes blink{50%{border-color:transparent}}
 .bank-fab{position:fixed;left:20px;bottom:20px;z-index:9;width:58px;height:58px;border:2px solid rgba(0,255,255,.5);border-radius:50%;cursor:pointer;background:#000;box-shadow:0 18px 38px rgba(0,255,255,.25),0 0 24px rgba(0,255,255,.15);transition:.25s;display:flex;align-items:center;justify-content:center;animation:float-bubble 3s ease-in-out infinite;padding:0;overflow:hidden}
 .bank-fab img{width:100%;height:100%;object-fit:cover;border-radius:50%}
 .bank-fab:hover{transform:scale(1.08);animation-play-state:paused;box-shadow:0 20px 42px rgba(0,255,255,.4),0 0 30px rgba(0,255,255,.25)}
@@ -85,8 +87,9 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(120deg
 .device-box{margin:20px 0;padding:15px;background:rgba(255,255,255,.05);border-radius:12px;border:1px dashed rgba(255,199,238,.3);font-size:.95rem;line-height:1.6;color:#f8d7f0}
 
 /* TERMINAL DECOR - ĐÃ NÂNG CẤP ĐỂ CHƠI GAME */
-.term-box { position: relative; background: #000; padding: 15px; border-radius: 12px; border: 1px solid #0f0; box-shadow: inset 0 0 10px rgba(0,255,0,0.2); font-family: monospace; color: #0f0; height: 320px; display: flex; flex-direction: column; text-align: left; overflow: hidden; }
+.term-box { position: relative; background: #000; padding: 15px; border-radius: 12px; border: 1px solid #0f0; box-shadow: inset 0 0 10px rgba(0,255,0,0.2); font-family: monospace; color: #0f0; height: 350px; display: flex; flex-direction: column; text-align: left; overflow: hidden; }
 .term-output { flex: 1; overflow-y: auto; margin-bottom: 10px; padding-right: 5px; word-break: break-all; z-index: 2; }
+.term-output::-webkit-scrollbar { width: 4px; } .term-output::-webkit-scrollbar-thumb { background: #0f0; }
 .term-input-line { display: flex; z-index: 2; }
 .term-input-line span { color: #ff86df; margin-right: 5px; white-space: nowrap;}
 .term-input-line input { flex: 1; background: transparent; border: none; color: #0f0; outline: none; font-family: monospace; font-size: 1rem; }
@@ -99,6 +102,11 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(120deg
 .floating-star { position: fixed; z-index: 10; font-size: 40px; cursor: pointer; transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s; animation: float-star 3s ease-in-out infinite alternate; pointer-events: none; }
 @keyframes float-star { from { transform: translateY(0); } to { transform: translateY(-10px); } }
 .floating-star:hover { filter: drop-shadow(0 0 12px #00ffff); }
+
+/* SUPERNOVA CLICK EFFECT */
+.supernova { position: fixed; border-radius: 50%; background: radial-gradient(circle, #fff 0%, #0ff 40%, transparent 70%); transform: translate(-50%, -50%) scale(0); pointer-events: none; z-index: 9998; animation: explode 0.5s ease-out forwards; }
+@keyframes explode { 0% { transform: translate(-50%, -50%) scale(0); opacity: 1; } 100% { transform: translate(-50%, -50%) scale(3.5); opacity: 0; } }
+@keyframes flashRed { 0% { background: rgba(255,0,0,0.2); } 100% { background: rgba(255,0,0,0.6); } }
 
 /* CSS MOUSE TRAIL */
 .mouse-particle { position: fixed; pointer-events: none; width: 8px; height: 8px; border-radius: 50%; z-index: 9999; animation: particle-fade 0.8s forwards ease-out; }
@@ -116,72 +124,15 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(120deg
 .intro-hidden { opacity: 0 !important; visibility: hidden !important; pointer-events: none; }
 
 /* Real-time Uptime Bar */
-.uptime-bar {
-    position: fixed;
-    top: 40px;
-    left: 14px;
-    background: rgba(0, 0, 0, 0.6);
-    border: 1px solid var(--pink);
-    padding: 4px 10px;
-    border-radius: 8px;
-    font-family: monospace;
-    font-size: 0.85rem;
-    color: var(--pink);
-    z-index: 998;
-    backdrop-filter: blur(5px);
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
-}
+.uptime-bar { position: fixed; top: 40px; left: 14px; background: rgba(0, 0, 0, 0.6); border: 1px solid var(--pink); padding: 4px 10px; border-radius: 8px; font-family: monospace; font-size: 0.85rem; color: var(--pink); z-index: 998; backdrop-filter: blur(5px); box-shadow: 0 0 10px rgba(0, 255, 255, 0.2); }
 
-/* Pixel Pet Container - FIXED Z-INDEX */
-.pixel-pet-container {
-    position: fixed;
-    right: 30px;
-    bottom: 90px;
-    z-index: 99999; /* Đẩy lên lớp cao nhất */
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: transform 0.3s ease;
-}
+/* Pixel Pet Container */
+.pixel-pet-container { position: fixed; right: 30px; bottom: 90px; z-index: 99999; cursor: pointer; display: flex; flex-direction: column; align-items: center; transition: transform 0.3s ease; }
 .pixel-pet-container:hover { transform: scale(1.1); }
-
-/* Pet Image */
-.pixel-pet {
-    width: 75px;
-    height: auto;
-    image-rendering: pixelated;
-    filter: drop-shadow(0 0 8px var(--pink-3));
-}
-
-/* Pet Speech Bubble */
-.pet-bubble {
-    position: absolute;
-    bottom: 100%;
-    background: white;
-    color: #000;
-    padding: 5px 10px;
-    border-radius: 10px;
-    font-size: 12px;
-    font-weight: bold;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transition: 0.3s;
-    margin-bottom: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-}
+.pixel-pet { width: 75px; height: auto; image-rendering: pixelated; filter: drop-shadow(0 0 8px var(--pink-3)); }
+.pet-bubble { position: absolute; bottom: 100%; background: white; color: #000; padding: 5px 10px; border-radius: 10px; font-size: 12px; font-weight: bold; white-space: nowrap; opacity: 0; pointer-events: none; transition: 0.3s; margin-bottom: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
 .pet-bubble.active { opacity: 1; transform: translateY(-5px); }
-.pet-bubble::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    border-width: 5px;
-    border-style: solid;
-    border-color: white transparent transparent transparent;
-}
+.pet-bubble::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border-width: 5px; border-style: solid; border-color: white transparent transparent transparent; }
 </style>
 </head>
 <body id="mainBody">
@@ -195,10 +146,7 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(120deg
 </div>
 
 <div id="fps-counter">FPS: 0</div>
-
-<div class="uptime-bar">
-  ⏱ Uptime: <span id="uptime-clock">00:00:00</span>
-</div>
+<div class="uptime-bar">⏱ Uptime: <span id="uptime-clock">00:00:00</span></div>
 
 <div class="pixel-pet-container" id="petContainer">
   <div class="pet-bubble" id="petBubble">Chào chủ nhân! ✨</div>
@@ -228,7 +176,7 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(120deg
     <div class="avatar" id="avatar"><img src="https://sf-static.upanhlaylink.com/img/image_202604052e5fd760d0635ce9d9c6e7555d064a1a.jpg" alt="Avatar"/><span class="online"></span></div>
     <div class="title">
       <h1 title="Tư vấn chuyển khoản ngân hàng">Khoa An <span class="badge-verify"><svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="vg" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#ffd7f5"/><stop offset="1" stop-color="#ff86df"/></linearGradient></defs><path d="M12 2l2.3 1.3 2.6-.1 1.7 2 .1 2.6L20 10l1.7 2.2-.1 2.6-1.7 2-2.6-.1L12 22l-2.3-1.3-2.6.1-1.7-2-.1-2.6L4 12l-1.7-2.2.1-2.6 1.7-2 2.6.1L12 2z" fill="url(#vg)"/><path d="M10.2 13.3l-2-2 1.4-1.4 1.3 1.3 3.5-3.5 1.4 1.4-4.9 5.2z" fill="#3a0c2f"/></svg></span></h1>
-      <div class="sub">Coder • Reverse • 36xSec</div>
+      <div class="sub" id="tw-text"></div>
     </div>
   </div>
   <div class="badges"><span class="badge">🇻🇳 Việt Nam</span><span class="badge">☎ 098223186</span><span class="badge">✉ Khoaansuperhero@gmail.com</span></div>
@@ -283,7 +231,7 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(120deg
 </div>
 
 <div class="modal-overlay" id="terminalModal">
-  <div class="modal-panel" style="background:#0a0a0a; max-width: 450px;">
+  <div class="modal-panel" style="background:#0a0a0a; max-width: 500px;">
     <button class="close-modal-btn" id="closeTerminalBtn">&times;</button>
     <h2 style="color:#0f0;margin-top:0;font-family:monospace;text-align:center">CMD Panel</h2>
     
@@ -293,7 +241,7 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(120deg
       <canvas id="snakeCanvas" width="300" height="200"></canvas>
       
       <div class="term-output" id="termOutput">
-        KhoaAnOS v1.0.0<br>Gõ <span style="color:#ff86df">'help'</span> để xem 20 lệnh thú vị.<br>Gõ <span style="color:#ff86df">'snake'</span> để chơi game.<br>
+        KhoaAnOS v3.0 Ultimate<br>Gõ <span style="color:#ff86df">'help'</span> để xem <span style="color:#ff0">100+ lệnh</span>.<br>Gõ <span style="color:#ff86df">'snake'</span> để chơi game.<br>
       </div>
       <div class="term-input-line" id="termInputLine">
         <span>root@khoaan:~$</span>
@@ -308,108 +256,77 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(120deg
 <script>
 // --- 1. XÁC MINH THIẾT BỊ ---
 async function checkDevice() {
-  const ua = navigator.userAgent;
-  let os = "Unknown", browser = "Unknown", vendor = "", modelName = "";
+  const ua = navigator.userAgent; let os = "Unknown", browser = "Unknown", vendor = "", modelName = "";
   if(/windows phone/i.test(ua)) os = "Windows Phone"; else if(/win/i.test(ua)) os = "Windows"; else if(/android/i.test(ua)) os = "Android"; else if(/ipad|iphone|ipod/i.test(ua)){ os = "iOS"; vendor = "Apple "; modelName = "iPhone/iPad"; } else if(/mac/i.test(ua)){ os = "macOS"; vendor = "Apple "; modelName = "Mac"; } else if(/linux/i.test(ua)) os = "Linux";
   if(/opr\//i.test(ua)||/opera/i.test(ua)) browser = "Opera"; else if(/edg/i.test(ua)) browser = "Edge"; else if(/chrome|crios/i.test(ua)) browser = "Chrome"; else if(/firefox|fxios/i.test(ua)) browser = "Firefox"; else if(/safari/i.test(ua)) browser = "Safari";
-  if (navigator.userAgentData && navigator.userAgentData.getHighEntropyValues) {
-    try { const hints = await navigator.userAgentData.getHighEntropyValues(["model"]); if (hints.model) modelName = hints.model; } catch(e) {}
-  }
-  if(os === "Android" && modelName === "") {
-    let match = ua.match(/Android.*?; (.*?) Build/);
-    if(match && match[1]) modelName = match[1]; else modelName = "Android Device";
-  }
+  if (navigator.userAgentData && navigator.userAgentData.getHighEntropyValues) { try { const hints = await navigator.userAgentData.getHighEntropyValues(["model"]); if (hints.model) modelName = hints.model; } catch(e) {} }
+  if(os === "Android" && modelName === "") { let match = ua.match(/Android.*?; (.*?) Build/); if(match && match[1]) modelName = match[1]; else modelName = "Android Device"; }
   document.getElementById('deviceBox').innerHTML = `📱 <b>Thiết bị:</b> ${vendor}${modelName} (${os})<br>🌐 <b>Trình duyệt:</b> ${browser}<br>✅ <b>Trạng thái:</b> Đã xác minh an toàn`;
-}
-checkDevice();
+} checkDevice();
 
-// --- 2. FPS COUNTER ---
+// --- 2. FPS & VIEWS ---
 let lastTime = performance.now(), frames = 0; const fpsEl = document.getElementById('fps-counter');
 function updateFPS(t) { frames++; if(t - lastTime >= 1000) { fpsEl.innerText = 'FPS: ' + frames; frames = 0; lastTime = t; } requestAnimationFrame(updateFPS); } requestAnimationFrame(updateFPS);
+async function fetchViews() { const viewEl = document.getElementById('viewCount'), namespace = 'khoaan_bio_page_2026_id', visitedKey = 'visited_' + namespace; try { let res = await fetch('https://api.counterapi.dev/v1/' + namespace + '/views' + (!localStorage.getItem(visitedKey) ? '/up' : '')); if(!localStorage.getItem(visitedKey)) localStorage.setItem(visitedKey, 'true'); viewEl.innerText = (await res.json()).count || '1'; } catch(e) { viewEl.innerText = 1200 + Math.floor(Date.now() / 86400000 % 1000); } } fetchViews();
 
-// --- 3. VIEW COUNTER ---
-async function fetchViews() {
-  const viewEl = document.getElementById('viewCount'), namespace = 'khoaan_bio_page_2026_id', visitedKey = 'visited_' + namespace;
-  try {
-    let res = await fetch('https://api.counterapi.dev/v1/' + namespace + '/views' + (!localStorage.getItem(visitedKey) ? '/up' : ''));
-    if(!localStorage.getItem(visitedKey)) localStorage.setItem(visitedKey, 'true');
-    viewEl.innerText = (await res.json()).count || '1';
-  } catch(e) { viewEl.innerText = 1200 + Math.floor(Date.now() / 86400000 % 1000); }
-}
-fetchViews();
-
-// --- 4. TRAILING MOUSE particles ---
+// --- 3. HIỆU ỨNG CHUỘT (TRAIL & SUPERNOVA CLICK) ---
 document.addEventListener('mousemove', (e) => {
-  if(Math.random() > 0.6) {
-    const p = document.createElement('div');
-    p.className = 'mouse-particle';
-    p.style.left = e.clientX + 'px';
-    p.style.top = e.clientY + 'px';
-    p.style.background = Math.random() > 0.5 ? '#0ff' : '#ff86df';
-    p.style.boxShadow = `0 0 8px ${p.style.background}`;
-    document.body.appendChild(p);
-    setTimeout(() => p.remove(), 800);
+  if(Math.random() > 0.6) { const p = document.createElement('div'); p.className = 'mouse-particle'; p.style.left = e.clientX + 'px'; p.style.top = e.clientY + 'px'; p.style.background = Math.random() > 0.5 ? '#0ff' : '#ff86df'; p.style.boxShadow = `0 0 8px ${p.style.background}`; document.body.appendChild(p); setTimeout(() => p.remove(), 800); }
+});
+document.addEventListener('click', (e) => {
+  if(e.target.closest('button, a, .modal-panel, .avatar, .pixel-pet-container, input')) return; // Bỏ qua nếu click vào nút
+  const nova = document.createElement('div'); nova.className = 'supernova'; nova.style.left = e.clientX + 'px'; nova.style.top = e.clientY + 'px'; nova.style.width = '80px'; nova.style.height = '80px'; document.body.appendChild(nova); setTimeout(() => nova.remove(), 500);
+});
+
+// --- 4. HIỆU ỨNG TYPEWRITER CHỨC DANH ---
+const twEl = document.getElementById('tw-text');
+const twWords = ["Coder • Reverse • 36xSec", "Python Automation Developer", "Security Consultant", "Dịch vụ MXH Uy Tín", "Chuyên Buff View/Sub"];
+let twIdx = 0, twCharIdx = 0, isDeleting = false;
+function typeEffect() {
+  const currentWord = twWords[twIdx];
+  if(isDeleting) twCharIdx--; else twCharIdx++;
+  twEl.innerHTML = currentWord.substring(0, twCharIdx) + "<span class='typewriter-cursor'></span>";
+  let speed = isDeleting ? 30 : 80;
+  if(!isDeleting && twCharIdx === currentWord.length) { speed = 2000; isDeleting = true; }
+  else if(isDeleting && twCharIdx === 0) { isDeleting = false; twIdx = (twIdx + 1) % twWords.length; speed = 400; }
+  setTimeout(typeEffect, speed);
+} typeEffect();
+
+// --- 5. EASTER EGG (TỘI PHẢN CHỦ) ---
+let secret = "khoaan", inputKeys = "";
+document.addEventListener('keydown', (e) => {
+  if(document.activeElement.tagName === 'INPUT') return; // Không kích hoạt nếu đang gõ terminal
+  inputKeys += e.key.toLowerCase();
+  if(inputKeys.length > secret.length) inputKeys = inputKeys.substring(1);
+  if(inputKeys === secret) {
+    const meme = document.createElement('div');
+    meme.innerHTML = `<div style="position:fixed;inset:0;background:rgba(255,0,0,0.5);animation:flashRed 0.4s infinite alternate;z-index:99998;pointer-events:none"></div>
+    <div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:repeating-linear-gradient(45deg,#000,#000 20px,#222 20px,#222 40px);padding:40px;border:5px dashed red;z-index:99999;text-align:center;box-shadow:0 0 80px red;border-radius:15px;width:90%;max-width:500px;">
+    <h1 style="color:red;text-shadow:0 0 15px #f00;font-size:2.8rem;margin-top:0">🚨 LỆNH TRUY NÃ 🚨</h1>
+    <h2 style="color:#fff;text-transform:uppercase;margin:10px 0;font-size:1.8rem">Tội danh: <span style="color:#ff0">PHẢN CHỦ</span></h2>
+    <p style="color:#0ff;font-size:1.2rem;line-height:1.5;margin-bottom:25px">Phát hiện kẻ phản bội hệ thống!<br>Yêu cầu mặc áo khám, còng tay ngay lập tức!</p>
+    <button class="btn" onclick="this.parentElement.parentElement.remove()" style="background:red;color:white;border:2px solid #fff;font-size:1.1rem;box-shadow:none">Em Chừa Rồi (Tha Lỗi)</button></div>`;
+    document.body.appendChild(meme);
+    inputKeys = ""; // reset
   }
 });
 
-// --- CÁC CHỨC NĂNG CƠ BẢN ---
-const welcomeOverlay=document.getElementById('welcomeOverlay'), enterBtn=document.getElementById('enterBtn');
-enterBtn.addEventListener('click',()=>{ welcomeOverlay.classList.remove('active'); playMusic(); });
-const toast=document.getElementById('toast');
-const showToast=t=>{toast.textContent=t;toast.style.display='block';clearTimeout(showToast.t);showToast.t=setTimeout(()=>toast.style.display='none',1600)};
-const safeCopy=t=>{if(navigator.clipboard?.writeText)navigator.clipboard.writeText(t).then(()=>showToast('Đã copy!'));else{const ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();showToast('Đã copy!')}};
-
+// --- CÁC CHỨC NĂNG CƠ BẢN (Nút, Copy, Nhạc) ---
+const welcomeOverlay=document.getElementById('welcomeOverlay'), enterBtn=document.getElementById('enterBtn'); enterBtn.addEventListener('click',()=>{ welcomeOverlay.classList.remove('active'); playMusic(); });
+const toast=document.getElementById('toast'); const showToast=t=>{toast.textContent=t;toast.style.display='block';clearTimeout(showToast.t);showToast.t=setTimeout(()=>toast.style.display='none',1600)}; const safeCopy=t=>{if(navigator.clipboard?.writeText)navigator.clipboard.writeText(t).then(()=>showToast('Đã copy!'));else{const ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();showToast('Đã copy!')}};
 document.getElementById('copyPhone').addEventListener('click',()=>safeCopy('098223186')); document.getElementById('copyMail').addEventListener('click',()=>safeCopy('Khoaansuperhero@gmail.com'));
-const audio=document.getElementById('backgroundAudio'), toggleMusicBtn=document.getElementById('toggleMusicBtn'), musicFab=document.getElementById('musicFab'); audio.volume=.62;
-const syncMusicUI=()=>{const p=!audio.paused;toggleMusicBtn.textContent=p?'🔊 Tắt nhạc':'🔈 Bật nhạc';musicFab.textContent=p?'🎵':'🔇'};
-const playMusic=async()=>{try{await audio.play()}catch(e){}syncMusicUI()}; const toggleMusic=()=>{audio.paused?playMusic():(audio.pause(),syncMusicUI())};
-toggleMusicBtn.addEventListener('click',toggleMusic); musicFab.addEventListener('click',toggleMusic);
+const audio=document.getElementById('backgroundAudio'), toggleMusicBtn=document.getElementById('toggleMusicBtn'), musicFab=document.getElementById('musicFab'); audio.volume=.62; const syncMusicUI=()=>{const p=!audio.paused;toggleMusicBtn.textContent=p?'🔊 Tắt nhạc':'🔈 Bật nhạc';musicFab.textContent=p?'🎵':'🔇'}; const playMusic=async()=>{try{await audio.play()}catch(e){}syncMusicUI()}; const toggleMusic=()=>{audio.paused?playMusic():(audio.pause(),syncMusicUI())}; toggleMusicBtn.addEventListener('click',toggleMusic); musicFab.addEventListener('click',toggleMusic);
+const bFab=document.getElementById('bankFab'), bMod=document.getElementById('bankModal'), cBtn=document.getElementById('closeBankModal'), cStk=document.getElementById('copyStkBtn'), stk=document.getElementById('stkValue').innerText; bFab.addEventListener('click',()=>bMod.classList.add('active')); cBtn.addEventListener('click',()=>bMod.classList.remove('active')); bMod.addEventListener('click',e=>{if(e.target===bMod)bMod.classList.remove('active')}); cStk.addEventListener('click',()=>{safeCopy(stk);setTimeout(()=>bMod.classList.remove('active'),500)});
 
-const bFab=document.getElementById('bankFab'), bMod=document.getElementById('bankModal'), cBtn=document.getElementById('closeBankModal'), cStk=document.getElementById('copyStkBtn'), stk=document.getElementById('stkValue').innerText;
-bFab.addEventListener('click',()=>bMod.classList.add('active')); cBtn.addEventListener('click',()=>bMod.classList.remove('active'));
-bMod.addEventListener('click',e=>{if(e.target===bMod)bMod.classList.remove('active')}); cStk.addEventListener('click',()=>{safeCopy(stk);setTimeout(()=>bMod.classList.remove('active'),500)});
+// VẼ NỀN GALAXY
+const nctx=document.getElementById('nebula').getContext('2d'), gctx=document.getElementById('galaxy').getContext('2d'); let W,H,stars=[],dust=[],meteors=[]; const resize=()=>{W=nctx.canvas.width=gctx.canvas.width=innerWidth;H=nctx.canvas.height=gctx.canvas.height=innerHeight;stars=Array.from({length:Math.max(170,Math.floor(W/7))},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.7+.15,v:Math.random()*.28+.06,a:Math.random()*.7+.25,tw:Math.random()*.03+.008}));dust=Array.from({length:20},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*180+90,c:Math.random()>.5?'rgba(255,152,229,.08)':'rgba(210,140,255,.08)'}))}; const drawN=()=>{nctx.clearRect(0,0,W,H);dust.forEach(d=>{const g=nctx.createRadialGradient(d.x,d.y,0,d.x,d.y,d.r);g.addColorStop(0,d.c);g.addColorStop(1,'transparent');nctx.fillStyle=g;nctx.beginPath();nctx.arc(d.x,d.y,d.r,0,Math.PI*2);nctx.fill()})}; const drawG=()=>{gctx.clearRect(0,0,W,H);const gl=gctx.createRadialGradient(W*.72,H*.18,0,W*.72,H*.18,Math.max(W,H)*.85);gl.addColorStop(0,'rgba(255,206,242,.12)');gl.addColorStop(.28,'rgba(255,132,223,.06)');gl.addColorStop(1,'transparent');gctx.fillStyle=gl;gctx.fillRect(0,0,W,H);stars.forEach(s=>{s.y+=s.v;s.a+=s.tw*(Math.random()>.5?1:-1);if(s.a<.2||s.a>.95)s.tw*=-1;if(s.y>H+3){s.y=-3;s.x=Math.random()*W}gctx.beginPath();gctx.fillStyle=`rgba(255,238,250,${Math.max(.18,Math.min(.95,s.a))})`;gctx.arc(s.x,s.y,s.r,0,Math.PI*2);gctx.fill()});gctx.lineWidth=1.4;for(let i=meteors.length-1;i>=0;i--){const m=meteors[i],t=gctx.createLinearGradient(m.x,m.y,m.x-m.l*.72,m.y+m.l);t.addColorStop(0,'rgba(255,240,250,.95)');t.addColorStop(1,'rgba(255,140,225,0)');gctx.strokeStyle=t;gctx.beginPath();gctx.moveTo(m.x,m.y);gctx.lineTo(m.x-m.l*.72,m.y+m.l);gctx.stroke();m.x+=m.vx;m.y+=m.vy;if(m.y>H+160||m.x>W+160)meteors.splice(i,1)}if(Math.random()<.022)meteors.push({x:Math.random()*W*.85,y:-20,l:Math.random()*110+55,vx:Math.random()*2.7+2.2,vy:Math.random()*4.3+5.3});requestAnimationFrame(drawG)}; addEventListener('resize',()=>{resize();drawN()});resize();drawN();drawG();
 
-const avatar=document.getElementById('avatar');
-const spawnHeart=(x,y)=>{const e=document.createElement('div');e.textContent=Math.random()>.5?'💗':'💖';Object.assign(e.style,{position:'absolute',left:x+'px',top:y+'px',pointerEvents:'none',zIndex:'5',fontSize:(14+Math.random()*12)+'px',opacity:'1',filter:'drop-shadow(0 0 10px rgba(255,180,235,.9))'});const dx=(Math.random()-.5)*80,dy=-(34+Math.random()*76),rot=(Math.random()-.5)*80;avatar.appendChild(e);const t0=performance.now();const step=t=>{const k=Math.min(1,(t-t0)/1000);e.style.transform=`translate(${dx*k}px, ${dy*k}px) rotate(${rot*k}deg) scale(${1+.25*k})`;e.style.opacity=String(1-k);if(k<1)requestAnimationFrame(step);else e.remove()};requestAnimationFrame(step)};
-avatar.addEventListener('click',e=>{const r=avatar.getBoundingClientRect(),x=(e?.clientX?e.clientX-r.left:52),y=(e?.clientY?e.clientY-r.top:52);for(let i=0;i<8;i++)spawnHeart(x,y)});
+// --- INTRO & UPTIME & PET ---
+const introScreen = document.getElementById('intro-screen'), introText = document.getElementById('intro-text'); const message = "System Loading... Welcome to Khoa An's Universe ✨"; let charIndex = 0; function typeWriter() { if (charIndex < message.length) { introText.innerHTML += message.charAt(charIndex); charIndex++; setTimeout(typeWriter, 50); } } window.addEventListener('DOMContentLoaded', () => { typeWriter(); setTimeout(() => { introScreen.classList.add('intro-hidden'); }, 3500); });
+const startTime = Date.now(); function updateUptime() { const now = Date.now(); const diff = Math.floor((now - startTime) / 1000); document.getElementById('uptime-clock').innerText = `${String(Math.floor(diff/3600)).padStart(2,'0')}:${String(Math.floor((diff%3600)/60)).padStart(2,'0')}:${String(diff%60).padStart(2,'0')}`; } setInterval(updateUptime, 1000);
+const petContainer = document.getElementById('petContainer'), petBubble = document.getElementById('petBubble'); const petQuotes = ["Cần buff view cứ gọi Khoa An! 😎", "Đang làm gì thế chủ nhân? ✨", "Web này xịn quá đi! 💕", "Đừng quên liên hệ Zalo nhé! 💬", "Tớ là bảo vệ của Bio này! 🛡️"]; petContainer.addEventListener('click', () => { petContainer.style.transform = "scale(0.8)"; setTimeout(() => { petContainer.style.transform = "scale(1.1)"; }, 100); petBubble.innerText = petQuotes[Math.floor(Math.random() * petQuotes.length)]; petBubble.classList.add('active'); setTimeout(() => { petBubble.classList.remove('active'); }, 3000); });
 
-const nctx=document.getElementById('nebula').getContext('2d'), gctx=document.getElementById('galaxy').getContext('2d');
-let W,H,stars=[],dust=[],meteors=[];
-const resize=()=>{W=nctx.canvas.width=gctx.canvas.width=innerWidth;H=nctx.canvas.height=gctx.canvas.height=innerHeight;stars=Array.from({length:Math.max(170,Math.floor(W/7))},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.7+.15,v:Math.random()*.28+.06,a:Math.random()*.7+.25,tw:Math.random()*.03+.008}));dust=Array.from({length:20},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*180+90,c:Math.random()>.5?'rgba(255,152,229,.08)':'rgba(210,140,255,.08)'}))};
-const drawN=()=>{nctx.clearRect(0,0,W,H);dust.forEach(d=>{const g=nctx.createRadialGradient(d.x,d.y,0,d.x,d.y,d.r);g.addColorStop(0,d.c);g.addColorStop(1,'transparent');nctx.fillStyle=g;nctx.beginPath();nctx.arc(d.x,d.y,d.r,0,Math.PI*2);nctx.fill()})};
-const drawG=()=>{gctx.clearRect(0,0,W,H);const gl=gctx.createRadialGradient(W*.72,H*.18,0,W*.72,H*.18,Math.max(W,H)*.85);gl.addColorStop(0,'rgba(255,206,242,.12)');gl.addColorStop(.28,'rgba(255,132,223,.06)');gl.addColorStop(1,'transparent');gctx.fillStyle=gl;gctx.fillRect(0,0,W,H);stars.forEach(s=>{s.y+=s.v;s.a+=s.tw*(Math.random()>.5?1:-1);if(s.a<.2||s.a>.95)s.tw*=-1;if(s.y>H+3){s.y=-3;s.x=Math.random()*W}gctx.beginPath();gctx.fillStyle=`rgba(255,238,250,${Math.max(.18,Math.min(.95,s.a))})`;gctx.arc(s.x,s.y,s.r,0,Math.PI*2);gctx.fill()});gctx.lineWidth=1.4;for(let i=meteors.length-1;i>=0;i--){const m=meteors[i],t=gctx.createLinearGradient(m.x,m.y,m.x-m.l*.72,m.y+m.l);t.addColorStop(0,'rgba(255,240,250,.95)');t.addColorStop(1,'rgba(255,140,225,0)');gctx.strokeStyle=t;gctx.beginPath();gctx.moveTo(m.x,m.y);gctx.lineTo(m.x-m.l*.72,m.y+m.l);gctx.stroke();m.x+=m.vx;m.y+=m.vy;if(m.y>H+160||m.x>W+160)meteors.splice(i,1)}if(Math.random()<.022)meteors.push({x:Math.random()*W*.85,y:-20,l:Math.random()*110+55,vx:Math.random()*2.7+2.2,vy:Math.random()*4.3+5.3});requestAnimationFrame(drawG)};
-addEventListener('resize',()=>{resize();drawN()});resize();drawN();drawG();
-
-// --- INTRO SCREEN XỬ LÝ ---
-const introScreen = document.getElementById('intro-screen'), introText = document.getElementById('intro-text');
-const message = "System Loading... Welcome to Khoa An's Universe ✨"; let charIndex = 0;
-function typeWriter() { if (charIndex < message.length) { introText.innerHTML += message.charAt(charIndex); charIndex++; setTimeout(typeWriter, 50); } }
-window.addEventListener('DOMContentLoaded', () => { typeWriter(); setTimeout(() => { introScreen.classList.add('intro-hidden'); }, 3500); });
-
-// --- XỬ LÝ UPTIME (THỜI GIAN THỰC) ---
-const startTime = Date.now();
-function updateUptime() {
-  const now = Date.now();
-  const diff = Math.floor((now - startTime) / 1000);
-  const hrs = String(Math.floor(diff / 3600)).padStart(2, '0');
-  const mins = String(Math.floor((diff % 3600) / 60)).padStart(2, '0');
-  const secs = String(diff % 60).padStart(2, '0');
-  document.getElementById('uptime-clock').innerText = `${hrs}:${mins}:${secs}`;
-}
-setInterval(updateUptime, 1000);
-
-// --- XỬ LÝ PET PIXEL TƯƠNG TÁC ---
-const petContainer = document.getElementById('petContainer'), petBubble = document.getElementById('petBubble');
-const petQuotes = ["Cần buff view cứ gọi Khoa An! 😎", "Đang làm gì thế chủ nhân? ✨", "Web này xịn quá đi! 💕", "Đừng quên liên hệ Zalo nhé! 💬", "Hôm nay bạn thật tuyệt vời! 🌟", "Tớ là bảo vệ của Bio này! 🛡️"];
-petContainer.addEventListener('click', () => {
-  petContainer.style.transform = "scale(0.8)";
-  setTimeout(() => { petContainer.style.transform = "scale(1.1)"; }, 100);
-  petBubble.innerText = petQuotes[Math.floor(Math.random() * petQuotes.length)];
-  petBubble.classList.add('active');
-  setTimeout(() => { petBubble.classList.remove('active'); }, 3000);
-});
-
-// --- 💻 TERMINAL SYSTEM (20 Lệnh + Game Rắn) ---
+// --- 💻 TERMINAL SYSTEM (100+ LỆNH) ---
 const termModal = document.getElementById('terminalModal'), openTermBtn = document.getElementById('openTerminalBtn'), closeTermBtn = document.getElementById('closeTerminalBtn'), termInput = document.getElementById('termInput'), termOutput = document.getElementById('termOutput');
 const sCanvas = document.getElementById('snakeCanvas'), sScore = document.getElementById('snakeScore'), sCtx = sCanvas.getContext('2d'), termInputLine = document.getElementById('termInputLine');
 const mCanvas = document.getElementById('matrixCanvas'), mCtx = mCanvas.getContext('2d');
@@ -417,86 +334,88 @@ let snakeGameInterval = null, isPlayingSnake = false, matrixInterval = null;
 
 openTermBtn.addEventListener('click', () => { termModal.classList.add('active'); setTimeout(() => termInput.focus(), 300); });
 closeTermBtn.addEventListener('click', () => { termModal.classList.remove('active'); quitSnake(); });
-termModal.addEventListener('click', e => { if(e.target===termModal) { termModal.classList.remove('active'); quitSnake(); } });
 
-// Hiệu ứng Matrix
 function toggleMatrix() {
   if (matrixInterval) { clearInterval(matrixInterval); matrixInterval = null; mCanvas.style.display = 'none'; return "Đã tắt hiệu ứng Matrix."; }
   mCanvas.style.display = 'block'; mCanvas.width = mCanvas.parentElement.clientWidth; mCanvas.height = mCanvas.parentElement.clientHeight;
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$+-*/=%\"'#&_(),.;:?!\\|{}<>[]^~"; const fontSize = 14; const columns = mCanvas.width/fontSize; const drops = [];
   for(let x=0; x<columns; x++) drops[x]=1;
-  matrixInterval = setInterval(() => {
-    mCtx.fillStyle = 'rgba(0, 0, 0, 0.05)'; mCtx.fillRect(0, 0, mCanvas.width, mCanvas.height);
-    mCtx.fillStyle = '#0F0'; mCtx.font = fontSize + 'px monospace';
-    for(let i=0; i<drops.length; i++) {
-      const text = chars.charAt(Math.floor(Math.random() * chars.length));
-      mCtx.fillText(text, i*fontSize, drops[i]*fontSize);
-      if(drops[i]*fontSize > mCanvas.height && Math.random() > 0.975) drops[i] = 0;
-      drops[i]++;
-    }
-  }, 33);
-  return "Đã bật hiệu ứng Matrix hacker.";
+  matrixInterval = setInterval(() => { mCtx.fillStyle = 'rgba(0,0,0,0.05)'; mCtx.fillRect(0,0,mCanvas.width,mCanvas.height); mCtx.fillStyle = '#0F0'; mCtx.font = fontSize + 'px monospace'; for(let i=0; i<drops.length; i++) { const text = chars.charAt(Math.floor(Math.random()*chars.length)); mCtx.fillText(text, i*fontSize, drops[i]*fontSize); if(drops[i]*fontSize > mCanvas.height && Math.random() > 0.975) drops[i] = 0; drops[i]++; } }, 33);
+  return "Đã bật hiệu ứng Hacker Matrix.";
 }
 
+// TỪ ĐIỂN 80 LỆNH CƠ BẢN
+const dictCmds = {
+  "hello": "Chào bạn! Chúc một ngày tốt lành.", "hi": "Hi! Cần giúp gì không?", "about": "Bio Khoa An - Vũ trụ của Coder & Hacker.",
+  "author": "Được tạo bởi Khoa An siêu cấp vip pro.", "fb": "https://www.facebook.com/Kem11th6", "zalo": "Zalo: 098223186",
+  "email": "Khoaansuperhero@gmail.com", "stk": "MB Bank - NG DOAN KHOA AN - 274233", "os": "KhoaAnOS v3.0 - Pink Galaxy Edition",
+  "python": "import this", "java": "System.out.println('Quá dài...');", "cpp": "cout << 'Segmentation fault'; // just kidding",
+  "html": "Bạn đang xem một file HTML xịn xò đấy.", "css": "margin: 0 auto; // bí quyết căn giữa", "js": "console.log('Khoa An is the best');",
+  "ip": "127.0.0.1 (Localhost của bạn an toàn)", "netstat": "Đang kết nối tới trái tim bạn...", "top": "PID USER PR NI VIRT RES SHR S %CPU %MEM TIME+ COMMAND<br>1 khoaan 20 0 99G 99G 0 R 99.9 99.9 999:99 Coder",
+  "ls": "index.html  assets/  secret_tools/  my_heart.txt", "cd": "Thư mục hiện tại: /home/khoaan", "pwd": "/home/khoaan/universe",
+  "cat": "Meow meow! Nhìn con pet bên phải kìa.", "rm": "Access Denied! Đừng hòng xóa dữ liệu của tôi.", "mkdir": "Tạo thư mục mới thành công.",
+  "history": "1. Sinh ra<br>2. Học Code<br>3. Thành Hacker", "joke": "Tại sao lập trình viên không thích tắm nắng? Vì họ sợ bị... cháy (burnout).", "fact": "Code chạy ở lần đầu tiên thường là một điềm xấu.",
+  "weather": "Nhiệt độ: Đang rất nóng bỏng vì giao diện này.", "calc": "1 + 1 = 2. Muốn tính phức tạp hơn thì lấy máy tính ra.", "coffee": "Đang pha chế Cafe Đen Đá Không Đường...",
+  "tea": "Trà đào chanh sả đã sẵn sàng 🍵", "beer": "Cạn ly! 🍻", "sleep": "Zzz... Hệ thống đang nghỉ ngơi.", "wake": "Chào buổi sáng!",
+  "status": "Tất cả hệ thống đang hoạt động 100% công suất.", "systeminfo": "KhoaAnOS 64-bit. RAM: 128GB. CPU: Quantum Core i99.", "dir": "Thư mục trống. Ai đó đã xóa hết rồi!",
+  "tree": "|-- Gốc<br>  |-- Cành<br>    |-- Lá", "color": "Màu yêu thích: Hồng & Cyan.", "theme": "Current Theme: Pink Vũ Trụ",
+  "contact": "Gõ 'social' hoặc kéo lên trên xem nhé.", "phone": "098223186", "youtube": "Sắp ra mắt kênh YouTube...",
+  "tiktok": "Buff view TikTok thì liên hệ ngay Khoa An.", "instagram": "Đang cập nhật IG...", "github": "https://github.com/KhoaAn",
+  "docker": "Container đang chạy mượt mà.", "linux": "Hệ điều hành của những vị thần.", "windows": "Đang cập nhật (0%)... Đừng tắt máy...",
+  "mac": "Đẹp nhưng đắt.", "android": "Thiết bị mở.", "ios": "Bảo mật cao.", "wifi": "Kết nối thành công: 'Tình yêu của mẹ'.",
+  "bluetooth": "Đang quét thiết bị xung quanh... Không tìm thấy ai FA cả.", "battery": "100% - Đang sạc năng lượng tích cực.", "cpu": "Nhiệt độ: 35°C. Đang mát mẻ.",
+  "ram": "Đã dùng 1GB / 128GB.", "gpu": "RTX 9090 Ti.", "disk": "1TB SSD NVMe Gen 10.", "usb": "Đã phát hiện thiết bị lạ. Quét virus...",
+  "keyboard": "Bàn phím cơ kêu lạch cạch rất sướng.", "mouse": "Chuột có hiệu ứng hạt siêu đẹp đúng không?", "monitor": "Đang hiển thị tuyệt tác.",
+  "neo": "Wake up, Neo...", "trinity": "Follow the white rabbit.", "morpheus": "Welcome to the real world.",
+  "redpill": "Bạn đã chọn sự thật phũ phàng. Hệ thống đang sụp đổ...", "bluepill": "Bạn chọn sự giả dối ngọt ngào. Hãy quên mọi thứ đi.", "admin": "Đang yêu cầu quyền... Bị từ chối.",
+  "root": "I am Groot... à nhầm, I am Root.", "user": "Bạn là khách VIP của tôi.", "guest": "Quyền hạn của bạn rất hạn chế.",
+  "password": "Mật khẩu là: 123456... đùa đấy.", "login": "Bạn đã đăng nhập sẵn rồi.", "logout": "Không thể thoát khỏi sự dễ thương này.",
+  "su": "su: Authentication failure", "chmod": "chmod 777 mọi thứ! (Đừng làm thế ngoài đời)", "chown": "Tài sản này thuộc về Khoa An.",
+  "ps": "PID TTY TIME CMD<br>1 pts/0 00:00:00 bash", "kill": "Không thể kill process này. Nó là bất tử.", "ssh": "Đang kết nối SSH tới server NASA...",
+  "ftp": "Chuyển file thành công.", "http": "Chuyển hướng sang HTTPS...", "https": "Kết nối an toàn.",
+  "php": "Ngôn ngữ tốt nhất thế giới (Theo một số người).", "sql": "DROP TABLE users; -- (Hiệu ứng không thành công)", "no": "Sao lại không?",
+  "yes": "Tuyệt vời!", "maybe": "Hãy quyết đoán lên nào.", "why": "Tại vì tôi thích thế.", "how": "Bằng cách gõ phím.",
+  "when": "Ngay bây giờ.", "where": "Tại đây, ngay lúc này.", "who": "Khoa An chứ ai.", "what": "Chuyện gì vậy?",
+  "404": "Lỗi 404: Không tìm thấy người yêu.", "500": "Lỗi Server: Server đang bận đi chơi.", "error": "Lỗi nằm ở giữa bàn phím và cái ghế.",
+  "bug": "Đó không phải bug, đó là tính năng.", "feature": "Tính năng mới sẽ được cập nhật vào thế kỷ sau.", "update": "Đang tải bản cập nhật... 99%... Lỗi mạng.",
+  "install": "Cài đặt thành công virus tình yêu.", "uninstall": "Không thể gỡ bỏ tôi khỏi tâm trí bạn.", "run": "Đang chạy trốn deadline...",
+  "stop": "Dừng lại! Đang có lỗi hệ thống.", "start": "Bắt đầu một hành trình mới.", "restart": "Khởi động lại... Chờ 5 giây..."
+};
+
 termInput.addEventListener('keydown', (e) => {
-  if(isPlayingSnake) {
-    if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight',' '].includes(e.key)) e.preventDefault();
-    return; // Block terminal input while playing game
-  }
-  
+  if(isPlayingSnake) { if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight',' '].includes(e.key)) e.preventDefault(); return; }
   if(e.key === 'Enter') {
-    const rawVal = termInput.value.trim();
-    const val = rawVal.toLowerCase();
+    const rawVal = termInput.value.trim(), val = rawVal.toLowerCase();
     let reply = `<div><span style="color:#ff86df">root@khoaan:~$</span> ${rawVal}</div>`;
     
-    // XỬ LÝ 20 LỆNH TERMINAL
+    // CÁC LỆNH ĐỘNG / CHỨC NĂNG
     if(val === 'help') {
-      reply += `<div style="color:#aaa">Danh sách 20 lệnh khả dụng:<br>
-      1.  <b style="color:#0ff">help</b> - Xem danh sách lệnh<br>
-      2.  <b style="color:#0ff">whoami</b> - Thông tin của tôi<br>
-      3.  <b style="color:#0ff">clear</b> - Xóa màn hình terminal<br>
-      4.  <b style="color:#0ff">snake</b> - Chơi rắn săn mồi 🐍<br>
-      5.  <b style="color:#0ff">bank</b> - Xem thông tin ngân hàng<br>
-      6.  <b style="color:#0ff">matrix</b> - Bật/tắt hiệu ứng Hacker<br>
-      7.  <b style="color:#0ff">date</b> - Xem ngày giờ hiện tại<br>
-      8.  <b style="color:#0ff">echo [chữ]</b> - Lặp lại từ bạn gõ<br>
-      9.  <b style="color:#0ff">ping</b> - Gửi gói tin ping<br>
-      10. <b style="color:#0ff">music play</b> - Bật nhạc nền<br>
-      11. <b style="color:#0ff">music pause</b> - Tắt nhạc nền<br>
-      12. <b style="color:#0ff">social</b> - Lấy link MXH<br>
-      13. <b style="color:#0ff">skills</b> - Kỹ năng chuyên môn<br>
-      14. <b style="color:#0ff">reboot</b> - Khởi động lại trang<br>
-      15. <b style="color:#0ff">hack</b> - Thử hack hệ thống<br>
-      16. <b style="color:#0ff">sudo</b> - Quyền quản trị<br>
-      17. <b style="color:#0ff">version</b> - Phiên bản HĐH<br>
-      18. <b style="color:#0ff">uptime</b> - Thời gian truy cập<br>
-      19. <b style="color:#0ff">quote</b> - Trích dẫn ngẫu nhiên<br>
-      20. <b style="color:#0ff">exit</b> - Thoát Terminal</div>`;
+      reply += `<div style="color:#aaa">Hơn 100 lệnh khả dụng! Thử một vài lệnh sau:<br>
+      <b style="color:#0ff">snake</b> (game), <b style="color:#0ff">matrix</b> (hacker), <b style="color:#0ff">clear</b>, <b style="color:#0ff">whoami</b>, <b style="color:#0ff">bank</b>, <b style="color:#0ff">music play/pause</b>, <b style="color:#0ff">social</b>, <b style="color:#0ff">skills</b>, <b style="color:#0ff">reboot</b>, <b style="color:#0ff">hack</b>, <b style="color:#0ff">uptime</b>...<br>Hoặc gõ bừa: coffee, sleep, weather, fact, joke, ip, redpill, sudo, bug, 404...</div>`;
     } 
-    else if(val === 'whoami') reply += `<div style="color:#0ff">NG DOÃN KHOA AN<br>- Coder<br>- Reverse Engineering<br>- 36xSec<br>- Cung cấp tool Python & Dịch vụ MXH</div>`;
     else if(val === 'clear') { termOutput.innerHTML = ''; termInput.value = ''; return; }
     else if(val === 'snake') { startSnake(); termInput.value = ''; return; }
-    else if(val === 'bank') reply += `<div style="color:#ff0">Ngân hàng: MB Bank<br>Chủ TK: NG DOÃN KHOA AN<br>STK: 274233</div>`;
     else if(val === 'matrix') reply += `<div style="color:#0f0">${toggleMatrix()}</div>`;
-    else if(val === 'date') reply += `<div style="color:#fff">${new Date().toLocaleString('vi-VN')}</div>`;
+    else if(val === 'whoami') reply += `<div style="color:#0ff">NG DOÃN KHOA AN<br>- Coder<br>- Reverse Engineering<br>- 36xSec<br>- Cung cấp tool Python & Dịch vụ MXH</div>`;
+    else if(val === 'date' || val === 'time') reply += `<div style="color:#fff">${new Date().toLocaleString('vi-VN')}</div>`;
     else if(val.startsWith('echo ')) reply += `<div style="color:#fff">${rawVal.substring(5)}</div>`;
-    else if(val === 'ping') reply += `<div style="color:#0f0">PONG! Thời gian phản hồi: ${Math.floor(Math.random()*20)+1}ms</div>`;
+    else if(val === 'ping') reply += `<div style="color:#0f0">PONG! Phản hồi từ NASA: ${Math.floor(Math.random()*20)+1}ms</div>`;
     else if(val === 'music play') { playMusic(); reply += `<div style="color:#0f0">Đã bật nhạc nền.</div>`; }
-    else if(val === 'music pause') { audio.pause(); syncMusicUI(); reply += `<div style="color:#aaa">Đã tạm dừng nhạc nền.</div>`; }
+    else if(val === 'music pause') { audio.pause(); syncMusicUI(); reply += `<div style="color:#aaa">Đã tắt nhạc nền.</div>`; }
     else if(val === 'social') reply += `<div style="color:#0ff">FB: fb.com/Kem11th6<br>Zalo: 098223186</div>`;
-    else if(val === 'skills') reply += `<div style="color:#ff86df">- Python Automation<br>- Tool Facebook/Spam<br>- UI/UX Design<br>- Reverse Security</div>`;
+    else if(val === 'skills') reply += `<div style="color:#ff86df">- Python Automation<br>- Tool Facebook/Spam<br>- Reverse Security<br>- Dịch vụ Buff View</div>`;
     else if(val === 'reboot') { reply += `<div style="color:#f00">System rebooting...</div>`; setTimeout(()=>location.reload(), 1000); }
     else if(val === 'hack') reply += `<div style="color:#f00">Initiating bypass...<br>[ERR] Firewall detected!<br>Bạn còn non lắm, không hack được Khoa An đâu ;)</div>`;
-    else if(val === 'sudo' || val.startsWith('sudo ')) reply += `<div style="color:#f00">Permission denied. Chỉ có NG DOÃN KHOA AN mới có quyền root!</div>`;
-    else if(val === 'version') reply += `<div style="color:#fff">KhoaAnOS v1.0.0 (Bản quyền 2026)</div>`;
+    else if(val === 'sudo' || val.startsWith('sudo ')) reply += `<div style="color:#f00">Permission denied. Chỉ có NG DOÃN KHOA AN mới có quyền sudo!</div>`;
+    else if(val === 'version') reply += `<div style="color:#fff">KhoaAnOS Ultimate v3.0 (Bản quyền 2026)</div>`;
     else if(val === 'uptime') reply += `<div style="color:#fff">Đã hoạt động: ${document.getElementById('uptime-clock').innerText}</div>`;
-    else if(val === 'quote') { const q = ["Làm hết sức, chơi hết mình!","Bug là tính năng, không phải lỗi.","Code sạch là code không có bug."]; reply += `<div style="color:#ff86df">"${q[Math.floor(Math.random()*q.length)]}"</div>`; }
-    else if(val === 'exit') { termModal.classList.remove('active'); termInput.value = ''; return; }
-    else if(val !== '') reply += `<div style="color:#f00">Lệnh không hợp lệ. Gõ 'help' để xem danh sách.</div>`;
+    else if(val === 'exit' || val === 'quit') { termModal.classList.remove('active'); termInput.value = ''; return; }
+    // NẾU CÓ TRONG TỪ ĐIỂN
+    else if(dictCmds[val]) reply += `<div style="color:#0ff">${dictCmds[val]}</div>`;
+    // NẾU KHÔNG TÌM THẤY
+    else if(val !== '') reply += `<div style="color:#f00">Lệnh '${val}' không hợp lệ. Gõ 'help' để xem hướng dẫn.</div>`;
     
-    termOutput.innerHTML += reply;
-    termInput.value = '';
-    termOutput.scrollTop = termOutput.scrollHeight;
+    termOutput.innerHTML += reply; termInput.value = ''; termOutput.scrollTop = termOutput.scrollHeight;
   }
 });
 
@@ -505,67 +424,27 @@ let snake, food, dx, dy, score;
 function startSnake() {
   isPlayingSnake = true; termOutput.style.display = 'none'; termInputLine.style.display = 'none';
   sCanvas.style.display = 'block'; sScore.style.display = 'block'; termInput.blur();
-  
   snake = [{x: 150, y: 100}, {x: 140, y: 100}, {x: 130, y: 100}];
   dx = 10; dy = 0; score = 0; document.getElementById('s-score').innerText = score;
-  createFood();
-  document.addEventListener("keydown", changeDirection);
-  snakeGameInterval = setInterval(mainSnake, 100);
+  createFood(); document.addEventListener("keydown", changeDirection); snakeGameInterval = setInterval(mainSnake, 100);
 }
-
 function quitSnake() {
-  if(!isPlayingSnake) return;
-  isPlayingSnake = false; clearInterval(snakeGameInterval); document.removeEventListener("keydown", changeDirection);
-  sCanvas.style.display = 'none'; sScore.style.display = 'none';
-  termOutput.style.display = 'block'; termInputLine.style.display = 'flex';
-  termOutput.innerHTML += `<div style="color:#ff0">[Trò chơi kết thúc] Điểm của bạn: ${score}</div>`;
-  termOutput.scrollTop = termOutput.scrollHeight; termInput.focus();
+  if(!isPlayingSnake) return; isPlayingSnake = false; clearInterval(snakeGameInterval); document.removeEventListener("keydown", changeDirection);
+  sCanvas.style.display = 'none'; sScore.style.display = 'none'; termOutput.style.display = 'block'; termInputLine.style.display = 'flex';
+  termOutput.innerHTML += `<div style="color:#ff0">[Game Over] Điểm của bạn: ${score}</div>`; termOutput.scrollTop = termOutput.scrollHeight; termInput.focus();
 }
-
-function mainSnake() {
-  if (hasGameEnded()) return quitSnake();
-  sCtx.fillStyle = '#001100'; sCtx.fillRect(0, 0, sCanvas.width, sCanvas.height);
-  drawFood(); moveSnake(); drawSnake();
-}
-
-function drawSnake() {
-  snake.forEach((part, index) => {
-    sCtx.fillStyle = index === 0 ? '#0f0' : '#0a0';
-    sCtx.strokeStyle = '#000'; sCtx.fillRect(part.x, part.y, 10, 10); sCtx.strokeRect(part.x, part.y, 10, 10);
-  });
-}
-
-function moveSnake() {
-  const head = {x: snake[0].x + dx, y: snake[0].y + dy};
-  snake.unshift(head);
-  if (head.x === food.x && head.y === food.y) {
-    score += 10; document.getElementById('s-score').innerText = score; createFood();
-  } else { snake.pop(); }
-}
-
-function createFood() {
-  food = { x: Math.round((Math.random() * (sCanvas.width - 10)) / 10) * 10, y: Math.round((Math.random() * (sCanvas.height - 10)) / 10) * 10 };
-  snake.forEach(part => { if (part.x == food.x && part.y == food.y) createFood(); });
-}
-
+function mainSnake() { if (hasGameEnded()) return quitSnake(); sCtx.fillStyle = '#001100'; sCtx.fillRect(0, 0, sCanvas.width, sCanvas.height); drawFood(); moveSnake(); drawSnake(); }
+function drawSnake() { snake.forEach((part, index) => { sCtx.fillStyle = index === 0 ? '#0f0' : '#0a0'; sCtx.strokeStyle = '#000'; sCtx.fillRect(part.x, part.y, 10, 10); sCtx.strokeRect(part.x, part.y, 10, 10); }); }
+function moveSnake() { const head = {x: snake[0].x + dx, y: snake[0].y + dy}; snake.unshift(head); if (head.x === food.x && head.y === food.y) { score += 10; document.getElementById('s-score').innerText = score; createFood(); } else { snake.pop(); } }
+function createFood() { food = { x: Math.round((Math.random() * (sCanvas.width - 10)) / 10) * 10, y: Math.round((Math.random() * (sCanvas.height - 10)) / 10) * 10 }; snake.forEach(part => { if (part.x == food.x && part.y == food.y) createFood(); }); }
 function drawFood() { sCtx.fillStyle = '#f00'; sCtx.strokeStyle = '#000'; sCtx.fillRect(food.x, food.y, 10, 10); sCtx.strokeRect(food.x, food.y, 10, 10); }
-
-function hasGameEnded() {
-  for (let i = 4; i < snake.length; i++) if (snake[i].x === snake[0].x && snake[i].y === snake[0].y) return true;
-  return snake[0].x < 0 || snake[0].x >= sCanvas.width || snake[0].y < 0 || snake[0].y >= sCanvas.height;
-}
-
+function hasGameEnded() { for (let i = 4; i < snake.length; i++) if (snake[i].x === snake[0].x && snake[i].y === snake[0].y) return true; return snake[0].x < 0 || snake[0].x >= sCanvas.width || snake[0].y < 0 || snake[0].y >= sCanvas.height; }
 function changeDirection(e) {
-  if(!isPlayingSnake) return;
-  const LEFT_KEY = 37, RIGHT_KEY = 39, UP_KEY = 38, DOWN_KEY = 40, ESC = 27;
-  const keyPressed = e.keyCode;
-  if (keyPressed === ESC) return quitSnake();
-  const goingUp = dy === -10, goingDown = dy === 10, goingRight = dx === 10, goingLeft = dx === -10;
-  if ([LEFT_KEY, RIGHT_KEY, UP_KEY, DOWN_KEY, 32].includes(keyPressed)) e.preventDefault(); // Chặn scroll web
-  if (keyPressed === LEFT_KEY && !goingRight) { dx = -10; dy = 0; }
-  if (keyPressed === UP_KEY && !goingDown) { dx = 0; dy = -10; }
-  if (keyPressed === RIGHT_KEY && !goingLeft) { dx = 10; dy = 0; }
-  if (keyPressed === DOWN_KEY && !goingUp) { dx = 0; dy = 10; }
+  if(!isPlayingSnake) return; const LEFT_KEY = 37, RIGHT_KEY = 39, UP_KEY = 38, DOWN_KEY = 40, ESC = 27; const keyPressed = e.keyCode;
+  if (keyPressed === ESC) return quitSnake(); const goingUp = dy === -10, goingDown = dy === 10, goingRight = dx === 10, goingLeft = dx === -10;
+  if ([LEFT_KEY, RIGHT_KEY, UP_KEY, DOWN_KEY, 32].includes(keyPressed)) e.preventDefault();
+  if (keyPressed === LEFT_KEY && !goingRight) { dx = -10; dy = 0; } if (keyPressed === UP_KEY && !goingDown) { dx = 0; dy = -10; }
+  if (keyPressed === RIGHT_KEY && !goingLeft) { dx = 10; dy = 0; } if (keyPressed === DOWN_KEY && !goingUp) { dx = 0; dy = 10; }
 }
 </script>
 </body>
