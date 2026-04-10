@@ -439,7 +439,7 @@ petMod.addEventListener('click',e=>{if(e.target===petMod)petMod.classList.remove
     const petImg = document.querySelector('#petContainer img');
     petImg.src = link;
     petImg.onerror = () => {
-      petImg.src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHVnMHpueXJ3eXpueXJ3eXpueXJ3eXpueXJ3eXpueXJ3eXpueSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/MDJ9Blh1H6wAEl4IqC/giphy.gif"; // Reset về mặc định
+      petImg.src = "https://giphy.com/gifs/capoo-cat-3ov9jZ0V6gOO0oa98Y"; // Reset về mặc định
       showToast('Link ảnh pet không hợp lệ hoặc không tải được.');
     }
     localStorage.setItem('petPhotoLink', link);
